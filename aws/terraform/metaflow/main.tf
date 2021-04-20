@@ -72,6 +72,7 @@ module "metaflow-computation" {
   batch_compute_environment_gpu_max_vcpus           = var.gpu_max_compute_vcpus
   batch_compute_environment_gpu_desired_vcpus       = var.gpu_desired_compute_vcpus
   batch_compute_environment_gpu_min_vcpus           = var.gpu_min_compute_vcpus
+  enable_step_functions                             = var.enable_step_functions
 
   standard_tags = module.common_vars.tags
 }
