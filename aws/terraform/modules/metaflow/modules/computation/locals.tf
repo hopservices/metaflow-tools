@@ -12,6 +12,7 @@ locals {
   gpu_compute_env_prefix_name = "${var.resource_prefix}gpu${var.resource_suffix}"
 
   # Name of Batch Queue.
+  # replace() ensures names that are composed of just prefix + suffix do not have duplicate dashes
   batch_queue_name = replace("${var.resource_prefix}${var.resource_suffix}", "--", "-")
 
   # Name of IAM role to create to manage ECS tasks
