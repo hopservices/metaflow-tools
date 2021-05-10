@@ -13,6 +13,8 @@ resource "aws_launch_template" "this" {
     arn = aws_iam_instance_profile.ecs_instance_role.arn
   }
 
+  image_id = jsondecode(data.aws_ssm_parameter.ecs_optimized_cpu_ami.value)["image_id"]
+
   block_device_mappings {
     device_name = "/dev/xvda"
 
