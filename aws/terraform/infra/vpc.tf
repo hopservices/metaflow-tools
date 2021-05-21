@@ -39,7 +39,7 @@ data "aws_availability_zones" "available" {
 */
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.this.id
-  cidr_block              = "10.0.32.0/20"
+  cidr_block              = var.vpc_cidr
   availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
 
@@ -75,7 +75,7 @@ resource "aws_nat_gateway" "metaflow_nat_gateway" {
 
 resource "aws_subnet" "private_1" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = "10.0.0.0/20"
+  cidr_block        = var.subnet1_cidr
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = merge(
@@ -89,7 +89,7 @@ resource "aws_subnet" "private_1" {
 
 resource "aws_subnet" "private_2" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = "10.0.16.0/20"
+  cidr_block        = var.subnet2_cidr
   availability_zone = data.aws_availability_zones.available.names[1]
 
   tags = merge(
