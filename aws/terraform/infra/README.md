@@ -8,16 +8,11 @@ Mostly stands up and configures the Amazon VPC.
 
 ### Amazon IAM
 
-Amazon IAM policy to allow access to the above Amazon S3 bucket and secret.
+Amazon IAM policy to allow access to the secret.
 
 ### AWS KMS
 
 KMS Key to encrypt/decrypt AWS Secrets Manager Secret.
-
-### Amazon S3
-
-Amazon S3 bucket for flow data input / output. This is not the Metaflow controlled Amazon S3 bucket but rather an external bucket 
-that Metaflow users can use to transfer artifacts into and out of Metaflow.
 
 ### AWS Secrets Manager
 
