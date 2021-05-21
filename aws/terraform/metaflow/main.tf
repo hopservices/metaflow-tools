@@ -25,9 +25,11 @@ module "metaflow" {
   resource_prefix = local.resource_prefix
   resource_suffix = local.resource_suffix
 
-  enable_step_functions = var.enable_step_functions
-  metaflow_policy_arn   = data.terraform_remote_state.infra.outputs.metaflow_policy_arn
-  tags                  = module.common_vars.tags
+  enable_custom_batch_container_registry = var.enable_custom_batch_container_registry
+  enable_step_functions                  = var.enable_step_functions
+
+  metaflow_policy_arn = data.terraform_remote_state.infra.outputs.metaflow_policy_arn
+  tags                = module.common_vars.tags
 
   cpu_max_compute_vcpus           = var.cpu_max_compute_vcpus
   cpu_desired_compute_vcpus       = var.cpu_desired_compute_vcpus

@@ -14,6 +14,12 @@ variable "aws_region" {
   description = "AWS region we will deploy to."
 }
 
+variable "enable_custom_batch_container_registry" {
+  type        = bool
+  default     = false
+  description = "Provisions infrastructure for custom ECR container registry if enabled"
+}
+
 variable "enable_step_functions" {
   type        = bool
   description = "Provisions infrastructure for step functions if enabled"

@@ -13,6 +13,12 @@ variable "enable_step_functions" {
   description = "Provisions infrastructure for step functions if enabled"
 }
 
+variable "enable_custom_batch_container_registry" {
+  type        = bool
+  default     = false
+  description = "Provisions infrastructure for custom ECR container registry if enabled"
+}
+
 variable "cpu_max_compute_vcpus" {
   type        = string
   description = "Maximum number of EC2 vCPUs that our CPU Batch Compute Environment can reach."
