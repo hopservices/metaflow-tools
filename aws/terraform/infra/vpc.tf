@@ -11,7 +11,7 @@ resource "aws_vpc" "this" {
 }
 
 /*
- Setup a gateway between aws VPC and internet. Allow access to and from Resources
+ Setup a gateway between AWS VPC and internet. Allow access to and from resources
  in subnet with public IP addr.
  Ref: https://nickcharlton.net/posts/terraform-aws-vpc.html
 */
@@ -27,14 +27,14 @@ resource "aws_internet_gateway" "this" {
 }
 
 /*
- Grants us ability to yield different availability zones for a region
+ Grant us ability to yield different availability zones for a region
 */
 data "aws_availability_zones" "available" {
   state = "available"
 }
 
 /*
- Create a public Subnet that the two follow private Subnets can use for internet egress connections.
+ Create a public subnet that the two private subnets can use for internet egress connections.
  Contains our NAT Gateway.
 */
 resource "aws_subnet" "public" {
@@ -114,7 +114,7 @@ resource "aws_route_table" "public" {
 }
 
 /*
- Maps all traffic to the internet gateway for egress.
+ Map all traffic to the internet gateway for egress.
  This allows all traffic to appear to come from the associated EIP.
 */
 resource "aws_route" "this" {
