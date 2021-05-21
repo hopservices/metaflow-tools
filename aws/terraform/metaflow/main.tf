@@ -45,3 +45,8 @@ module "metaflow" {
   subnet_private_1_id     = data.terraform_remote_state.infra.outputs.subnet_private_1_id
   subnet_private_2_id     = data.terraform_remote_state.infra.outputs.subnet_private_2_id
 }
+
+resource "local_file" "metaflow_config" {
+  content  = module.metaflow.metaflow_profile_json
+  filename = "${path.module}/${local.metaflow_config_filename}"
+}

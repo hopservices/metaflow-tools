@@ -21,9 +21,9 @@ which should output your account information.
 
 ### Infrastructure stack
 
-The infra sub-project provides some pre-requisite infrastructure for the metaflow service. For more details see the [README](aws/terraform/infra/README.md)
+The infra sub-project provides some pre-requisite infrastructure for the Metaflow service. For more details see the [README](aws/terraform/infra/README.md)
 
-Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed.
+Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed. These variables are used to construct unique names for infrastructure resources.
 
 Initialize the terraform:
 
@@ -40,12 +40,14 @@ terraform apply --var-file prod.tfvars
 The metaflow sub-project provisions the metadata API, step functions, and an AWS Batch queue. For more details see the 
 [README](aws/terraform/metaflow/README.md)
 
-Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed.
+Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed. These variables are used to construct unique names for infrastructure resources.
+
 Metadata API authentication: the endpoint is exposed to the public internet via API Gateway, but only accessible to the IPs that match `access_list_cidr_blocks` (default is none).
+
 Additionally:
 * There are variables which govern the three compute environments associated with the AWS Batch queue that can be adjusted based on needs. 
 * The `enable_step_functions` flag can be set to false to not provision the step functions infrastructure. 
-* The `access_list_cidr_blocks` should be set to the network cidr blocks that will be accessing the metadata API.
+* The `access_list_cidr_blocks` should be set to the network cidr blocks that will be accessing the metadata API. If you only need access from your local machine, determine your public ip address (`curl https://ifconfig.me/`) and add that value ot the list.
 
 Initialize the terraform:
 
@@ -57,9 +59,7 @@ Apply it:
 terraform apply --var-file prod.tfvars
 ```
 
-Once the terraform executes, grab the output of `metaflow_profile_json` and put it in `~/.metaflowconfig/config_prod.json`
-
-Next set the `METAFLOW_PROFILE` environment variable to `prod` to tell the metaflow client which configuration to use.
+Once the terraform executes, configure Metaflow using `metaflow configure import ./metaflow_config_<env>_<region>.json`
 
 ### Default Batch Image
 
@@ -94,10 +94,7 @@ docker push <ecr-repository-name>
 
 The sagemaker-notebook subproject provisions an optional Jupyter notebook with access to the Metaflow API.
 
-Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed.
-
-Additionally:
-* The `access_list_cidr_blocks` should be set to the network cidr blocks that will be accessing the notebook.
+Copy `example.tfvars` to `prod.tfvars` (or whatever environment name you prefer) and update that `env` name and the `region` as needed. These variables are used to construct unique names for infrastructure resources.
 
 Initialize the terraform:
 
