@@ -148,12 +148,3 @@ resource "aws_route_table_association" "public_b" {
   subnet_id      = aws_subnet.private_2.id
   route_table_id = aws_route_table.private.id
 }
-
-resource "aws_flow_log" "main_vpc" {
-  count                = length(var.vpc_flow_log_s3_destination) > 0 ? 1 : 0
-  vpc_id               = aws_vpc.this.id
-  traffic_type         = "ALL"
-  log_destination_type = "s3"
-  log_destination      = var.vpc_flow_log_s3_destination
-  tags                 = module.common_vars.tags
-}
