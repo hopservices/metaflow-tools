@@ -47,7 +47,7 @@ Metadata API authentication: the endpoint is exposed to the public internet via 
 Additionally:
 * There are variables which govern the three compute environments associated with the AWS Batch queue that can be adjusted based on needs. 
 * The `enable_step_functions` flag can be set to false to not provision the AWS Step Functions infrastructure.
-* The `access_list_cidr_blocks` should be set to the network cidr blocks that will be accessing the metadata API. If you only need access from your local machine, determine your public ip address (`curl https://ifconfig.me/`) and add that value ot the list.
+* The `access_list_cidr_blocks` should be set to the network cidr blocks that will be accessing the metadata API. If you only need access from your local machine, determine your public IP address (`curl https://ifconfig.me/`) and add that value to the list.
 
 Initialize the terraform:
 
@@ -63,7 +63,7 @@ Once the Terraform executes, configure Metaflow using `metaflow configure import
 
 ### Custom Batch Image
 
-A custom batch image can be used by setting the variable `enable_custom_batch_container_registry` to `true`. This will provision an Amazon ECR registry, adn the generated Metaflow AWS Batch configuration will have `METAFLOW_BATCH_CONTAINER_IMAGE` and `METAFLOW_BATCH_CONTAINER_REGISTRY` set to the Amazon ECR repository. The Metaflow AWS Batch image must then be pushed into the repository before the first flow can be executed.
+A custom batch image can be used by setting the variable `enable_custom_batch_container_registry` to `true`. This will provision an Amazon ECR registry, and the generated Metaflow AWS Batch configuration will have `METAFLOW_BATCH_CONTAINER_IMAGE` and `METAFLOW_BATCH_CONTAINER_REGISTRY` set to the Amazon ECR repository. The Metaflow AWS Batch image must then be pushed into the repository before the first flow can be executed.
 
 To do this, first copy the output of `metaflow_batch_container_image`.
 
