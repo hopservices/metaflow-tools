@@ -11,7 +11,7 @@ resource "aws_vpc" "this" {
 }
 
 /*
- Setup a gateway between AWS VPC and internet. Allow access to and from resources
+ Setup a gateway between Amazon VPC and internet. Allow access to and from resources
  in subnet with public IP addr.
  Ref: https://nickcharlton.net/posts/terraform-aws-vpc.html
 */

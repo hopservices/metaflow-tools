@@ -44,8 +44,8 @@ output "METAFLOW_SFN_DYNAMO_DB_TABLE" {
 }
 
 output "metaflow_profile_configuration" {
-  value       = "metaflow configure import ${path.module}/${local.metaflow_config_filename}"
-  description = "Output the command to import Metaflow configuration"
+  value       = "Run this command in a shell to import the Metaflow configuration: metaflow configure import ${path.module}/${local.metaflow_config_filename}"
+  description = "Instructions to import the generated Metaflow configuration"
 }
 
 # output for sagemaker notebook project

@@ -61,9 +61,9 @@ terraform apply --var-file prod.tfvars
 
 Once the Terraform executes, configure Metaflow using `metaflow configure import ./metaflow_config_<env>_<region>.json`
 
-### Custom Batch Image
+### Custom Default Batch Image
 
-A custom batch image can be used by setting the variable `enable_custom_batch_container_registry` to `true`. This will provision an Amazon ECR registry, and the generated Metaflow AWS Batch configuration will have `METAFLOW_BATCH_CONTAINER_IMAGE` and `METAFLOW_BATCH_CONTAINER_REGISTRY` set to the Amazon ECR repository. The Metaflow AWS Batch image must then be pushed into the repository before the first flow can be executed.
+A custom default batch image can be used by setting the variable `enable_custom_batch_container_registry` to `true`. This will provision an Amazon ECR registry, and the generated Metaflow AWS Batch configuration will have `METAFLOW_BATCH_CONTAINER_IMAGE` and `METAFLOW_BATCH_CONTAINER_REGISTRY` set to the Amazon ECR repository. The Metaflow AWS Batch image must then be pushed into the repository before the first flow can be executed.
 
 To do this, first copy the output of `metaflow_batch_container_image`.
 
